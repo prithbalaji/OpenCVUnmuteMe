@@ -71,7 +71,7 @@ while True:
 
         # show face state
         (x, y, w, h) = face_utils.rect_to_bb(rect)
-        cv2.putText(image, "Face State {} {}".format(face_state),
+        cv2.putText(image, "Face State {}".format(face_state), (w + x - 100, h + y + 15),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     cv2.imshow('frame',image)
