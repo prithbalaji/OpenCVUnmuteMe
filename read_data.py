@@ -1,7 +1,9 @@
 import cv2 
 import numpy as np
 
-cap = cv2.VideoCapture('test_mov.mp4')#this is a local path will not run
+
+cap = cv2.VideoCapture('Test.MOV')
+
 
 
 while True:
@@ -13,6 +15,7 @@ while True:
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+
 
 
 cap.release()
