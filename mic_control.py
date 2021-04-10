@@ -1,5 +1,6 @@
 #in order to run this use 
 #pip install pywin32
+#only works on windows using the Win32 api
 import win32api
 import win32gui
 
