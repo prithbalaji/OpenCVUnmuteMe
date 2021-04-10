@@ -17,7 +17,7 @@ CLOSED = "closed"
 top_mouth_range = [(61, 64)]#, (49, 54)] we only care about inner lips
 bottom_mouth_range = [(65, 68)] #(55, 60)]
 
-mouth_open_threshold = 8
+mouth_open_threshold = 3
 
 while True:
     ret, frame  = cap.read()
@@ -66,14 +66,13 @@ while True:
 
         # set lip state based on threshold
         face_state = CLOSED
-        if abs(average_top_y - average_bottom_y) > mouth_open_threshold:
+        if 100 * abs(average_top_y - average_bottom_y)/h > mouth_open_threshold:
             face_state = OPEN
 
         # show face state
         (x, y, w, h) = face_utils.rect_to_bb(rect)
-        cv2.putText(image, "Face State {}".format(face_state), (w + x - 100, h + y + 15),
+        cv2.putText(image, "Face State {} {}".format(face_state),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-# show the output image with the face detections + facial landmarks
 
     cv2.imshow('frame',image)
 
