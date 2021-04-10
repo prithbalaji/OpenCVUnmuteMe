@@ -19,3 +19,4 @@ with sd.RawStream(channels=2, dtype='int24', callback=callback):
     mic_control.mic_mute_toggle()   # unmute
     print("not muted")
     sd.sleep(int(duration * 1000))  # wait 5 more seconds
+    
