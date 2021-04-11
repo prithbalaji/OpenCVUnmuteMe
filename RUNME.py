@@ -107,6 +107,8 @@ canvas1.pack()
 
 disable()
 
+font1 = tkFont.Font(family="Arial", size=12, weight="bold")
+
 #define widgets   
 mute_button = tk.Button(text='Toggle Mute',command=switch, bg='red', bd=4, fg='white', font=font1, height=2)
 enable_button = tk.Button(text='enable app',command=enable_toggle, bg='red', bd=4, fg='white', font=font1, height=2)
