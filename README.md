@@ -16,6 +16,4 @@ HackIllinois 2021 project: using OpenCV to detect visual cues to see if someone 
   * pip install opencv-contrib-python
   * pip install pywin32
 
-
-
 ### mac

@@ -30,7 +30,7 @@ elif (sys.platform == "darwin"):
       except ValueError:
           return 0
 
-  def mic_mute_toggle_mac():
+  def mic_mute_toggle():
       volume = execute_apple_script(GET_INPUT_VOL_COMMAND)
       if (volume != 0):
           execute_apple_script(SET_VOLUME_COMMAND.format(value = 0))
