@@ -22,20 +22,20 @@ elif (sys.platform == "darwin"):
   GET_INPUT_VOL_COMMAND = "input volume of (get volume settings)"
   DEFAULT_VOLUME = 75 
 
-def execute_apple_script(command):
-    result = subprocess.run(["osascript", "-e", command], stdout=subprocess.PIPE)
-    output = result.stdout.decode("utf-8")
-    result = output.strip()
-    try:
-        return int(result)
-    except ValueError:
-        return 0
+  def execute_apple_script(command):
+      result = subprocess.run(["osascript", "-e", command], stdout=subprocess.PIPE)
+      output = result.stdout.decode("utf-8")
+      result = output.strip()
+      try:
+          return int(result)
+      except ValueError:
+          return 0
 
-def mic_mute_toggle_mac():
-    volume = execute_apple_script(GET_INPUT_VOL_COMMAND)
-    if (volume != 0):
-        execute_apple_script(SET_VOLUME_COMMAND.format(value = 0))
-    else:
-        execute_apple_script(SET_VOLUME_COMMAND.format(value = DEFAULT_VOLUME))]
+  def mic_mute_toggle_mac():
+      volume = execute_apple_script(GET_INPUT_VOL_COMMAND)
+      if (volume != 0):
+          execute_apple_script(SET_VOLUME_COMMAND.format(value = 0))
+      else:
+          execute_apple_script(SET_VOLUME_COMMAND.format(value = DEFAULT_VOLUME))]
 else:
   raise Exception("bad platform: not supported, this application only works on Windows and Mac")
