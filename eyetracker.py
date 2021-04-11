@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-
+#used OpenCV tutorial
 #FOR WINDOWS viewers, download opencv with the following command: pip install opencv-contrib-python
 cap = cv2.VideoCapture(0)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
