@@ -1,9 +1,3 @@
-#To turn this into windows executable
-#run: pip install pyinstaller
-#in the project directory run: pyinstaller --onefile RUNME.py
-#then the executable will appear under the \dist folder
-#note: uses python 3.5+ 
-
 import tkinter as tk
 import mic_control as mic
 import read_data as mouthd
