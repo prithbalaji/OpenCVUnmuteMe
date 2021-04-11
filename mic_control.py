@@ -17,7 +17,6 @@ if sys.platform == "win32":
     win32api.SendMessage(hwnd_active, WM_APPCOMMAND, None, APPCOMMAND_MICROPHONE_VOLUME_MUTE)
 
 elif sys.platform == "darwin":
-  print("Mac OS is not supported")
   SET_VOLUME_COMMAND = "set volume input volume {value}"
   GET_INPUT_VOL_COMMAND = "input volume of (get volume settings)"
   DEFAULT_VOLUME = 75 
