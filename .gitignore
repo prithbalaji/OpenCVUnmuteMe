@@ -2,3 +2,4 @@ test_mov.mp4
 __pycache__/read_data.cpython-38.pyc
 dist/RUNME.exe
 build/RUNMe/Tree-03.toc
+__pycache__/mic_control.cpython-38.pyc
