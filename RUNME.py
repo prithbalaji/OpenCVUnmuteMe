@@ -12,7 +12,7 @@ import tkinter.font as tkFont
 #define global variables 
 
 #webcam_connected = False
-start_speaking_delay = 1
+start_speaking_delay = 10
 stop_speaking_delay = 120
 
 app_enable = True #default is enabled
@@ -62,6 +62,7 @@ def poll_webcam():
     global talking
     if (app_enable):
       m_open = mouthd.get_mouth_state()
+      draw_test_label((m_open == True))
       if (muted and m_open):
         switch()
         talking = 5

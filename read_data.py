@@ -17,7 +17,7 @@ CLOSED = "closed"
 top_mouth_range = [(61, 64)]#, (49, 54)] we only care about inner lips
 bottom_mouth_range = [(65, 68)] #(55, 60)]
 
-mouth_open_threshold = 1
+mouth_open_threshold = 2
 
 def initialize_capture():
     global cap
@@ -89,7 +89,7 @@ def get_mouth_state():
         (x, y, w, h) = face_utils.rect_to_bb(rect)
         cv2.putText(image, "Face State {}".format(face_state), (w + x - 100, h + y + 15),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-        #cv2.imshow('frame',image)
+        cv2.imshow('frame',image)
         return face_state == OPEN
 
     #cv2.imshow('frame',image)
