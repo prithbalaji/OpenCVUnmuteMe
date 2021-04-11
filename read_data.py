@@ -17,9 +17,25 @@ CLOSED = "closed"
 top_mouth_range = [(61, 64)]#, (49, 54)] we only care about inner lips
 bottom_mouth_range = [(65, 68)] #(55, 60)]
 
-mouth_open_threshold = 3
+mouth_open_threshold = 5
 
-while True:
+def initialize_capture():
+    global cap
+    cap = cv2.VideoCapture(0) 
+    if cap is None or not cap.isOpened():
+        return False
+    return True
+
+def clear_capture():
+    global cap
+    cap.release()
+    cv2.destroyAllWindows()
+
+def get_mouth_state():
+#while True:
+    global cap
+    if not cap.isOpened():
+        return None
     ret, frame  = cap.read()
 
     image = imutils.resize(frame, width=500)
@@ -73,12 +89,16 @@ while True:
         (x, y, w, h) = face_utils.rect_to_bb(rect)
         cv2.putText(image, "Face State {}".format(face_state), (w + x - 100, h + y + 15),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        #cv2.imshow('frame',image)
+        return face_state == OPEN
 
-    cv2.imshow('frame',image)
+    #cv2.imshow('frame',image)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    #if cv2.waitKey(1) & 0xFF == ord('q'):
+    #    break
 
-cap.release()
-cv2.destroyAllWindows()
+    #return [face_state == OPEN, image]
+
+#cap.release()
+#cv2.destroyAllWindows()
 
