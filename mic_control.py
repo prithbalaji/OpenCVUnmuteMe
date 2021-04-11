@@ -36,6 +36,6 @@ elif (sys.platform == "darwin"):
       if (volume != 0):
           execute_apple_script(SET_VOLUME_COMMAND.format(value = 0))
       else:
-          execute_apple_script(SET_VOLUME_COMMAND.format(value = DEFAULT_VOLUME))]
+          execute_apple_script(SET_VOLUME_COMMAND.format(value = DEFAULT_VOLUME))
 else:
   raise Exception("bad platform: not supported, this application only works on Windows and Mac")
