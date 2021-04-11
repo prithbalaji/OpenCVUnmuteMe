@@ -11,10 +11,12 @@ import read_data as mouthd
 #define global variables 
 
 #webcam_connected = False
-webcam_poll_delay = 50
+start_speaking_delay = 1
+stop_speaking_delay = 120
 
 app_enable = True #default is enabled
 muted = False #case where muted starts as true?
+talking = 0
 
 
 #define functions 
@@ -56,12 +58,26 @@ def enable_toggle():
     enable()
 
 def poll_webcam():
+    global talking
     if (app_enable):
       m_open = mouthd.get_mouth_state()
-      if ((muted and m_open) or ((not muted) and (not m_open))):
+      if (muted and m_open):
         switch()
-        draw_test_label(muted)
-    root.after(webcam_poll_delay, poll_webcam)  # reschedule event 
+        talking = 5
+      elif ((not muted) and (not m_open)):
+        if (talking >0):
+            talking = talking -1
+        else:
+          switch()
+      elif (m_open and (not muted)):
+        talking = 5
+  
+    draw_test_label(talking)
+    if (talking>0):
+      root.after(stop_speaking_delay, poll_webcam) # reschedule event
+    else:
+       root.after(start_speaking_delay, poll_webcam)
+
 
 def draw_mute_label(t,c):
     mute_label = tk.Label(root, text= t, fg=c, font=('helvetica', 12, 'bold'))
@@ -80,6 +96,7 @@ def on_closing():
       switch()
     root.destroy()
 
+
 #define app
 root= tk.Tk()
 canvas1 = tk.Canvas(root, width = 300, height = 300)
@@ -95,6 +112,7 @@ enable_button = tk.Button(text='enable app',command=enable_toggle, bg='brown',fg
 draw_mute_label("unmuted","green")
 draw_enable_label("disabled")
 
+
 #add widgets to canvas 
 canvas1.create_window(50, 50, window=mute_button)
 canvas1.create_window(150, 50, window=enable_button)
@@ -102,5 +120,5 @@ canvas1.create_window(150, 50, window=enable_button)
 
 #mouthd.initialize_capture()
 root.protocol("WM_DELETE_WINDOW", on_closing)
-root.after(webcam_poll_delay, poll_webcam)
+root.after(start_speaking_delay, poll_webcam)
 root.mainloop()

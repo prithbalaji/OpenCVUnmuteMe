@@ -17,7 +17,7 @@ CLOSED = "closed"
 top_mouth_range = [(61, 64)]#, (49, 54)] we only care about inner lips
 bottom_mouth_range = [(65, 68)] #(55, 60)]
 
-mouth_open_threshold = 3
+mouth_open_threshold = 1
 
 def initialize_capture():
     global cap
