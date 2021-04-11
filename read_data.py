@@ -9,7 +9,7 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
 #cap = cv2.VideoCapture('Test.MOV') #this is a local path will not run
-cap = cv2.VideoCapture(0) # takes input from default webcam
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW) # takes input from default webcam
 
 OPEN = "open"
 CLOSED = "closed"
@@ -17,11 +17,11 @@ CLOSED = "closed"
 top_mouth_range = [(61, 64)]#, (49, 54)] we only care about inner lips
 bottom_mouth_range = [(65, 68)] #(55, 60)]
 
-mouth_open_threshold = 5
+mouth_open_threshold = 1
 
 def initialize_capture():
     global cap
-    cap = cv2.VideoCapture(0) 
+    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW) 
     if cap is None or not cap.isOpened():
         return False
     return True
