@@ -20,21 +20,19 @@ muted = False #case where muted starts as true?
 #define functions 
 def switch():
   global muted
-  t = "unmuted" #default value
-  c = "green" #default value
+  # t = "unmuted" #default value
+  # c = "green" #default value
 
-   # only do anything if disabled, becasue when enabled, 
-   # video controls muting/unmuting
-  if (not app_enable):
-    mic.mic_mute_toggle()
+  #if (app_enable): #no longer necessary
+  mic.mic_mute_toggle()
 
-    muted = not muted
-    if (muted):
-        t = "muted"
-        c = 'red'
-    else:
-        t = "unmuted"
-        c= 'green'
+  muted = not muted
+  if (muted):
+      t = "muted"
+      c = 'red'
+  else:
+      t = "unmuted"
+      c= 'green'
   draw_mute_label(t,c)
 
 def disable():
@@ -62,6 +60,7 @@ def poll_webcam():
       m_open = mouthd.get_mouth_state()
       if ((muted and m_open) or ((not muted) and (not m_open))):
         switch()
+        draw_test_label(muted)
     root.after(webcam_poll_delay, poll_webcam)  # reschedule event 
 
 def draw_mute_label(t,c):
@@ -77,7 +76,6 @@ def draw_test_label(test):
     canvas1.create_window(200, 200, window=test_label)
 
 def on_closing():
-    draw_test_label(muted)
     if (muted):
       switch()
     root.destroy()
