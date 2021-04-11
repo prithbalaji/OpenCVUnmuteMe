@@ -35,6 +35,9 @@ Aside from this, we learned how to use libraries like dlib and openCV which none
 
 Unfortunately, our app does not currently allow face tracking to work simultaneously with a video call. This is a major drawback and something we were unable to implement on the last day of the hackathon. Once this is added as a feature, our app would probably work on integrating our application with various video conferencing applications such as Zoom, Microsoft Teams, Discord calls, Facetime, etc.
 
+# Demo Video
+
+https://www.youtube.com/watch?v=BJ72wYOZ_9I
 
 ## How to run this project 
 
