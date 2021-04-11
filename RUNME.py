@@ -49,11 +49,11 @@ def poll_webcam():
     root.after(webcam_poll_delay, poll_webcam)  # reschedule event 
 
 def draw_mute_label(t,c):
-    mute_label = tk.Label(root, text= t, fg=c, font=('Arial', 14, 'bold'), background='yellow')
+    mute_label = tk.Label(root, text= t, fg=c, bd= 4, font=('Arial', 14, 'bold'), background='yellow')
     canvas1.create_window(80, 150, window=mute_label)
 
 def draw_enable_label(e):
-    enable_label = tk.Label(root, text= e, fg="black", font=('Arial', 14, 'bold'), background='yellow')
+    enable_label = tk.Label(root, text= e, fg="black", bd= 4, font=('Arial', 14, 'bold'), background='yellow')
     canvas1.create_window(220, 150, window=enable_label)
 
 #define app
@@ -74,6 +74,6 @@ canvas1.create_window(80, 50, window=mute_button)
 canvas1.create_window(220, 50, window=enable_button)
 
 
-#mouthd.initialize_capture()
-#root.after(webcam_poll_delay, poll_webcam)
+mouthd.initialize_capture()
+root.after(webcam_poll_delay, poll_webcam)
 root.mainloop()
