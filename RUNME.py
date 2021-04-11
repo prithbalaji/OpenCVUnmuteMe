@@ -7,6 +7,7 @@
 import tkinter as tk
 import mic_control as mic
 import read_data as mouthd
+import tkinter.font as tkFont
 
 #define global variables
 
@@ -41,19 +42,19 @@ def poll_webcam():
     root.after(webcam_poll_delay, poll_webcam)  # reschedule event
     
 #define application gui    
-root= tk.Tk()
-canvas1 = tk.Canvas(root, width = 300, height = 300)
+root = tk.Tk()
+canvas1 = tk.Canvas(root, width = 300, height = 300, background='yellow', )
 canvas1.pack()
 
+font1 = tkFont.Font(family="Arial", size=12, weight="bold")
+
 #create widgets  
-button1 = tk.Button(text='Toggle Mute',command=switch, bg='brown',fg='white')
-label1 = tk.Label(root, text= t, fg=c, font=('helvetica', 12, 'bold'))
+button1 = tk.Button(text='Toggle Mute',command=switch, bg='red', bd=4, fg='white', font=font1, height=2)
+label1 = tk.Label(root, text= t, fg=c, font=('Arial', 14, 'bold'), background='yellow')
 
 #add widgets to canvas
-canvas1.create_window(150, 150, window=button1)
+canvas1.create_window(150, 50, window=button1)
 canvas1.create_window(150, 200, window=label1)
-
-
 
 #mouthd.initialize_capture()
 #root.after(webcam_poll_delay, poll_webcam)
