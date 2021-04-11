@@ -1,8 +1,8 @@
 
-
+import subprocess
 import sys 
 
-if (sys.platform == "win32"):
+if sys.platform == "win32":
   #in order to run this use 
   #pip install pywin32
   #only works on windows using the Win32 api
@@ -16,7 +16,7 @@ if (sys.platform == "win32"):
     hwnd_active = win32gui.GetForegroundWindow()
     win32api.SendMessage(hwnd_active, WM_APPCOMMAND, None, APPCOMMAND_MICROPHONE_VOLUME_MUTE)
 
-elif (sys.platform == "darwin"):
+elif sys.platform == "darwin":
   print("Mac OS is not supported")
   SET_VOLUME_COMMAND = "set volume input volume {value}"
   GET_INPUT_VOL_COMMAND = "input volume of (get volume settings)"
@@ -31,7 +31,7 @@ elif (sys.platform == "darwin"):
       except ValueError:
           return 0
 
-  def mic_mute_toggle_mac():
+  def mic_mute_toggle():
       volume = execute_apple_script(GET_INPUT_VOL_COMMAND)
       if (volume != 0):
           execute_apple_script(SET_VOLUME_COMMAND.format(value = 0))
