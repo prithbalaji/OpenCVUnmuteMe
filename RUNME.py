@@ -22,9 +22,11 @@ def switch():
   global muted
   t = "unmuted" #default value
   c = "green" #default value
-  if (app_enable): #only do anything if enabled
+
+   # only do anything if disabled, becasue when enabled, 
+   # video controls muting/unmuting
+  if (not app_enable):
     mic.mic_mute_toggle()
-    draw_test_label(app_enable)
 
     muted = not muted
     if (muted):
@@ -74,7 +76,11 @@ def draw_test_label(test):
     test_label = tk.Label(root, text= test, fg="blue", font=('helvetica', 12, 'bold'))
     canvas1.create_window(200, 200, window=test_label)
 
-
+def on_closing():
+    draw_test_label(muted)
+    if (muted):
+      switch()
+    root.destroy()
 
 #define app
 root= tk.Tk()
@@ -97,5 +103,6 @@ canvas1.create_window(150, 50, window=enable_button)
 
 
 #mouthd.initialize_capture()
+root.protocol("WM_DELETE_WINDOW", on_closing)
 root.after(webcam_poll_delay, poll_webcam)
 root.mainloop()
